@@ -23,5 +23,28 @@ def get_games():
     return jsonify(results)
 
 
+@app.route('/save', methods=['POST'])
+def save_game():
+    console = request.args['console']
+    name = request.args['name']
+
+    response_dict = {
+        'name': name,
+        'console': console
+    }
+    return jsonify(response_dict)
+
+@app.route('/saveJSON', methods=['POST'])
+def save_json():
+    data = request.get_json()
+    console = data['console']
+    name = data['name']
+
+    response_dict = {
+        'name': name,
+        'console': console
+    }
+    return jsonify(response_dict)
+
 
 app.run(debug=True, port=5001)
